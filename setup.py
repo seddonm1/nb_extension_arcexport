@@ -11,5 +11,4 @@ setup(name='ArcExporter',
           'nbconvert.exporters': [
               'arcexport = arcexport:ArcExporter'
           ],
-      },
-      zip_safe=False)
+      })
