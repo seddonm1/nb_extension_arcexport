@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(name='ArcExporter',
       version='0.0.1',
@@ -6,8 +6,8 @@ setup(name='ArcExporter',
       author='Mike Seddon',
       author_email='',
       license='MIT',
-      packages=find_packages(),
-      package_data={'templates': ['*']},
+      packages=['arcexport'],
+      package_data={'arcexport': ['templates/*']},
       entry_points={
           'nbconvert.exporters': [
               'arcexport = arcexport:ArcExporter'
