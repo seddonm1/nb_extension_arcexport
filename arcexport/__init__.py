@@ -18,13 +18,13 @@ class ArcExporter(HTMLExporter):
     # If this custom exporter should add an entry to the
     # "File -> Download as" menu in the notebook, give it a name here in the
     # `export_from_notebook` class member
-    export_from_notebook = "Arc (.json)"
+    export_from_notebook = "Arc"
 
     def _file_extension_default(self):
         """
-        The new file extension is `.test_ext`
+        The new file extension is `.json`
         """
-        return '.test_ext'
+        return '.json'
 
     @property
     def template_path(self):
@@ -38,4 +38,4 @@ class ArcExporter(HTMLExporter):
         """
         We want to use the new template we ship with our library.
         """
-        return 'test_template'  # full
+        return 'test_template.tpl'  # full
