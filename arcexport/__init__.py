@@ -38,7 +38,7 @@ class ArcExporter(TemplateExporter):
         """
         We want to use the new template we ship with our library.
         """
-        return 'test_template'  # full
+        return 'arcexport'  # full
 
     output_mimetype = 'application/json'
 
