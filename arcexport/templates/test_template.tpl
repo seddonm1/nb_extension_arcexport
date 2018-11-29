@@ -4,5 +4,4 @@
     {{ cell.source.lstrip().rstrip() }}{{ "," if not loop.last }}
   {%- endif -%}
 {%- endfor -%}
-  ]
-}
+]}
