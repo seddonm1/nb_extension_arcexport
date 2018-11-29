@@ -31,8 +31,6 @@ class ArcExporter(TemplateExporter):
         We want to inherit from HTML template, and have template under
         `./templates/` so append it to the search path. (see next section)
         """
-        print(super().template_path +
-              [os.path.join(os.path.dirname(__file__), "templates")])
         return super().template_path+[os.path.join(os.path.dirname(__file__), "templates")]
 
     @default('template_file')
