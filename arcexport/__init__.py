@@ -2,15 +2,13 @@
 import os
 import os.path
 
+from traitlets import default
 from traitlets.config import Config
-from nbconvert.exporters.html import HTMLExporter
 
-# -----------------------------------------------------------------------------
-# Classes
-# -----------------------------------------------------------------------------
+from nbconvert.exporters.templateexporter import TemplateExporter
 
 
-class ArcExporter(HTMLExporter):
+class ArcExporter(TemplateExporter):
     """
     Arc Exporter
     """
@@ -20,6 +18,7 @@ class ArcExporter(HTMLExporter):
     # `export_from_notebook` class member
     export_from_notebook = "Arc"
 
+    @default('file_extension')
     def _file_extension_default(self):
         """
         The new file extension is `.json`
@@ -36,8 +35,26 @@ class ArcExporter(HTMLExporter):
               [os.path.join(os.path.dirname(__file__), "templates")])
         return super().template_path+[os.path.join(os.path.dirname(__file__), "templates")]
 
+    @default('template_file')
     def _template_file_default(self):
         """
         We want to use the new template we ship with our library.
         """
         return 'test_template'  # full
+
+    output_mimetype = 'application/json'
+
+    @default('raw_mimetypes')
+    def _raw_mimetypes_default(self):
+        return ['application/json', '']
+
+    @property
+    def default_config(self):
+        c = Config({
+            'ExtractOutputPreprocessor': {'enabled': True},
+            'NbConvertBase': {
+                'display_data_priority': ['text/plain']
+            }
+        })
+        c.merge(super(ArcExporter, self).default_config)
+        return c
